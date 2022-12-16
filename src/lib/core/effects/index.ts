@@ -6,7 +6,7 @@ const EffectList = ['Difference', 'Fill', 'Glow', 'Grow', 'Zoom'] as const
 
 export type Effect = typeof EffectList[number]
 
-export const Effects: Record<Effect, Style> = {
+export const Effects = {
   Difference: {
     mixBlendMode: 'difference',
   },
@@ -20,4 +20,4 @@ export const Effects: Record<Effect, Style> = {
     transform: 'scale(1.4)',
   },
   Zoom,
-}
+} as const satisfies Record<Effect, Style>

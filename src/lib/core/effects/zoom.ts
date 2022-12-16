@@ -38,7 +38,7 @@ function moveMagnifier({ event, cursor, image, zoom = 2 }: moveMagnifierProps) {
 
 let controller: Maybe<AbortController>
 
-export const Zoom: Style = function Zoom({ target }) {
+export const Zoom = function Zoom({ target }) {
   const image = target?.current
   const { cursor } = getState()
 
@@ -62,4 +62,4 @@ export const Zoom: Style = function Zoom({ target }) {
     backgroundRepeat: 'inherit',
     backgroundSize: 'inherit',
   }
-}
+} satisfies Style

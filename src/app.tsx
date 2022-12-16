@@ -26,8 +26,8 @@ function CustomCursor() {
 
   return (
     <div style={{ display: 'none' }}>
-      <Cursor.Shapes.Square />
-      <Cursor.Effects.Glow />
+      <Cursor.Shapes.Square on="mount" />
+      <Cursor.Effects.Glow on="mount" />
     </div>
   )
 }
@@ -62,9 +62,11 @@ const Image = forwardRef<HTMLImageElement, JSX.IntrinsicElements['img']>((props,
 
 function Photo(props: JSX.IntrinsicElements['img']) {
   return (
-    <Cursor.Effects.Zoom>
-      <Image {...props} ref={useCursorStyleOnHover('Shape.Ring', 'Effect.Grow')} />
-    </Cursor.Effects.Zoom>
+    <Cursor.Effects.Grow on="hover">
+      <Cursor.Effects.Zoom on="hover">
+        <Image {...props} ref={useCursorStyleOnHover('Shape.Ring')} />
+      </Cursor.Effects.Zoom>
+    </Cursor.Effects.Grow>
   )
 }
 
@@ -85,10 +87,10 @@ function ButtonChangeShape(props: { shape: string; setShape: (shape: string) => 
 function SetCustomShape(props: { shape: string }) {
   return (
     <div style={{ display: 'none' }}>
-      <Cursor.Shapes.Mask>
+      <Cursor.Shapes.Mask on="mount">
         <img height="100%" width="100%" src={props.shape} alt={props.shape} />
       </Cursor.Shapes.Mask>
-      <Cursor.Effects.Fill />
+      <Cursor.Effects.Fill on="mount" />
     </div>
   )
 }

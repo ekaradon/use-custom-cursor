@@ -20,7 +20,7 @@ function Ring(props: GlobalStyle) {
   }
 }
 
-export const Shapes: Record<Shape, Style> = {
+export const Shapes = {
   Diamond: (props) => ({
     ...Square(props),
     transform: 'rotate(45deg)',
@@ -28,4 +28,4 @@ export const Shapes: Record<Shape, Style> = {
   Ring,
   Mask,
   Square,
-} as const
+} as const satisfies Record<Shape, Style>

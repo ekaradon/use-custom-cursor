@@ -68,8 +68,8 @@ function TitleHovered() {
 function App() {
   return (
     <Cursor.Provider height="40px" width="40px" color="blue">
-      <Cursor.Shape.Ring />
-      <Cursor.Effect.Glow />
+      <Cursor.Shape.Ring on="mount" />
+      <Cursor.Effect.Glow on="hover" />
       <TitleHovered />
     </Cursor.Provider>
   )
@@ -120,16 +120,16 @@ function CursorContainer(props: { children: ReactNode }) {
 
 #### Usage
 
-You can find a list of default shapes provided by this library when you want to define a custom cursor. You just need to call the component in order to set the shape accordingly. Once the component is unmounted, the shape is unset from your cursor.
+You can find a list of default shapes provided by this library when you want to define a custom cursor. You just need to call the component in order to set the shape accordingly. Once the component is unmounted, the shape is unset from your cursor. Depending of the component, you can specify whether the effect should be applied on mount or on hover (which then require children).
 
 #### Available Shapes
 
-| Name    | requirements                           | Description                                      |
-| ------- | -------------------------------------- | ------------------------------------------------ |
-| Diamond | None                                   | Will set the shape of the cursor to ◇            |
-| Mask    | An `img` with an `svg` src as children | Will set the shape of the accordingly to the svg |
-| Ring    | None                                   | Will set the shape of the cursor to ○            |
-| Square  | None                                   | Will set the shape of the cursor to □            |
+| Name    | requirements                           | On           | Description                                      |
+| ------- | -------------------------------------- | ------------ | ------------------------------------------------ |
+| Diamond | None                                   | hover, mount | Will set the shape of the cursor to ◇            |
+| Mask    | An `img` with an `svg` src as children | hover, mount | Will set the shape of the accordingly to the svg |
+| Ring    | None                                   | hover, mount | Will set the shape of the cursor to ○            |
+| Square  | None                                   | hover, mount | Will set the shape of the cursor to □            |
 
 #### Example
 
@@ -137,8 +137,8 @@ You can find a list of default shapes provided by this library when you want to 
 function CustomCursor() {
   return (
     <>
-      <Cursor.Shape.Ring />
-      <Cursor.Shape.Mask>
+      <Cursor.Shape.Ring on="mount" />
+      <Cursor.Shape.Mask on="hover">
         <img src="myCustomShape.svg" alt="cursorShape" />
       </Cursor.Shape.Mask>
     </>
@@ -150,17 +150,17 @@ function CustomCursor() {
 
 #### Usage
 
-You can find a list of default effects provided by this library when you want to define a visual effect of your cursor unrelated to the shapes. You just need to call the component in order to set the effect accordingly. Once the component is unmounted, the effect is removed from your cursor.
+You can find a list of default effects provided by this library when you want to define a visual effect of your cursor unrelated to the shapes. You just need to call the component in order to set the effect accordingly. Once the component is unmounted, the effect is removed from your cursor. Depending of the component, you can specify whether the effect should be applied on mount or on hover (which then require children).
 
 #### Available Effects
 
-| Name       | requirements         | Description                                                                      |
-| ---------- | -------------------- | -------------------------------------------------------------------------------- |
-| Difference | None                 | Will inverse the color hovered by your cursor, works well when `Fill` is used to |
-| Fill       | None                 | Will fill the interior of the cursor with the color defined globally             |
-| Glow       | None                 | Will make your cursor glow outside of its perimeter                              |
-| Grow       | None                 | Will enlarge your cursor                                                         |
-| Zoom       | An `img` as children | Will make your cursor zoom the image                                             |
+| Name       | requirements         | On           | Description                                                                      |
+| ---------- | -------------------- | ------------ | -------------------------------------------------------------------------------- |
+| Difference | None                 | hover, mount | Will inverse the color hovered by your cursor, works well when `Fill` is used to |
+| Fill       | None                 | hover, mount | Will fill the interior of the cursor with the color defined globally             |
+| Glow       | None                 | hover, mount | Will make your cursor glow outside of its perimeter                              |
+| Grow       | None                 | hover, mount | Will enlarge your cursor                                                         |
+| Zoom       | An `img` as children | hover        | Will make your cursor zoom the image                                             |
 
 #### Example
 
@@ -168,9 +168,9 @@ You can find a list of default effects provided by this library when you want to
 function CustomCursorEffects() {
   return (
     <>
-      <Cursor.Effects.Glow />
-      <Cursor.Effects.Grow />
-      <Cursor.Effects.Zoom>
+      <Cursor.Effects.Glow on="mount" />
+      <Cursor.Effects.Grow on="mount" />
+      <Cursor.Effects.Zoom on="hover">
         <img src="avatar.png" alt="avatar" />
       </Cursor.Effects.Zoom>
     </>
